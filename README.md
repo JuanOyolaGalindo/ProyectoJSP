@@ -6,8 +6,8 @@
 
 ## Full name :page_facing_up:
 ## Date of birth :calendar:
-## Race :construction_worker:
+## Major :construction_worker:
 ## Identification No :memo:
 ## Identification Photo :clipboard:
-## Stratum  :chart_with_upwards_trend:
-## Approval :eyes:
+## Social class  :chart_with_upwards_trend:
+## Homologate :eyes:
