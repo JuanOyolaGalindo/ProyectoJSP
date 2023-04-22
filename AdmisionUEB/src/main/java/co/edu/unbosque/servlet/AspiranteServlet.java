@@ -37,25 +37,54 @@ public class AspiranteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
-
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate fnh = LocalDate.parse(req.getParameter("pfnacimiento"), fmt);
-		LocalDate hoy = LocalDate.now();
-		Period p = Period.between(fnh, hoy);
-
-		String nombre = req.getParameter("pnombre");
-		String fnacimiento = fnh + "";
-		int edad = p.getYears();
-		String colegioegr = "null*";
-		/* req.getParameter("pcolegioegr") */;
-		String id = req.getParameter("pid");
-		String carrera = req.getParameter("pcarrera");
-		String estrato = req.getParameter("pestrato");
-		String homologa = req.getParameter("phomologa");
-		Part fot = req.getPart("pfoto");
-		c.solicitarAgregar(nombre, fnacimiento, edad, colegioegr, id, carrera, estrato, homologa, null);
-
+		PrintWriter pw = resp.getWriter();
+		pw.println("<html>");
+		pw.println("<head>");
+		pw.println("<title>");
+		pw.println("Tabla de aspirantes");
+		pw.println("</title>");
+		pw.println("</head>");
+		pw.println(
+				"<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp\" crossorigin=\"anonymous\">");
+		pw.println(
+				"<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N\" crossorigin=\"anonymous\"></script>");
+		pw.println("<body>");
+		pw.println("<table class='table'>");
+		pw.println("<thead>");
+		pw.println(" <tr>");
+		pw.println("<th scope='col'>Nombre del aspirante</th>");
+		pw.println("<th scope='col'>Fecha de nacimiento del aspirante</th>");
+		pw.println("<th scope='col'>Edad del aspirante</th>");
+		pw.println("<th scope='col'>Colegio del cual se egresó</th>");
+		pw.println("<th scope='col'>Número de identificación</th>");
+		pw.println("<th scope='col'>Carrera</th>");
+		pw.println("<th scope='col'>Estrato</th>");
+		pw.println("<th scope='col'>¿Homologado?</th>");
+		pw.println("<th scope='col'>Foto</th>");
+		pw.println("</tr>");
+		pw.println("</thead>");
+		pw.println("<tbody>");
+		for (int i = 0; i < c.getAdao().getList().size(); i++) {
+			
+			pw.println("<tr>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getNombre() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getFechanacimiento() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getEdad() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getColegioegresado()+ "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getId() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getCarrera() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getEstrato() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getHomologa() + "</td>");
+			pw.println("<td>" + c.getAdao().getList().get(i).getFoto()+ "</td>");
+			pw.println("</tr>");
+		}
+		pw.println("</tbody>");
+		pw.println("</table>");
+		pw.println("</body>");
+		pw.println("</html>");
+		pw.close();
 	}
+	
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		 resp.setContentType("text/html");
@@ -68,14 +97,15 @@ public class AspiranteServlet extends HttpServlet {
 			String nombre = req.getParameter("pnombre");
 			String fnacimiento = fnh + "";
 			int edad = p.getYears();
-			String colegioegr = "null*";
-			/* req.getParameter("pcolegioegr") */;
+			String colegioegr = req.getParameter("pcolegioegr");
 			String id = req.getParameter("pid");
 			String carrera = req.getParameter("pcarrera");
 			String estrato = req.getParameter("pestrato");
 			String homologa = req.getParameter("phomologa");
 
 		    Part filePart = req.getPart("pfoto");
+		    System.out.println(carrera);
+		    System.out.println(homologa);
 		    InputStream fileContent = filePart.getInputStream();
 
 		    // Procesar la imagen utilizando ImageIO
@@ -97,7 +127,8 @@ public class AspiranteServlet extends HttpServlet {
 		    c.solicitarAgregar(nombre, fnacimiento, edad, colegioegr, id, carrera, estrato, homologa, outputFile);
 
 		    // Enviar una respuesta HTTP con un mensaje de éxito
-		    pw.println("Archivo cargado exitosamente");
+		    pw.println("Estudiante guardado exitosamente");
+		    pw.println(c.solicitarListar());
 		    pw.close();
 	}
 

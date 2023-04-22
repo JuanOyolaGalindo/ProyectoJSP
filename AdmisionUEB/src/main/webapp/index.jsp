@@ -11,6 +11,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha384-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
 <title>Menu</title>
 </head>
@@ -24,25 +27,24 @@
 			Universidad El Bosque - Menú de opciones
 		</p>
 	</div>
-
-	<div class="position-absolute top-50 start-50 translate-middle">
-		<div class="d-grid gap-2 col-6" style="width: 350px;">
-			<button class="btn btn-dark" type="button"
-				onclick="window.location.href='formulario.jsp'">Ingresar</button>
-			<button class="btn btn-dark" type="button" data-bs-toggle="modal"
-				data-bs-target="#modalActualizar">Actualizar</button>
-			<button class="btn btn-dark" type="button" data-bs-toggle="modal"
-				data-bs-target="#modalEliminar">Eliminar</button>
-			<button class="btn btn-dark" type="button" data-bs-toggle="modal"
-				data-bs-target="#modalBuscar">Buscar</button>
-			<button class="btn btn-dark" type="button"
-				action="http://localhost:8080/AdmisionUEB/AspiranteServlet"
-				method="POST">Listar</button>
-			<button class="btn btn-dark" type="button" data-bs-toggle="modal"
-				data-bs-target="#modalListarPorCarrera">Listar por carrera</button>
+	<form action="http://localhost:8080/AdmisionUEB/AspiranteServlet"
+		method="GET">
+		<div class="position-absolute top-50 start-50 translate-middle">
+			<div class="d-grid gap-3	 col-6" style="width: 350px;">
+				<input class="btn btn-dark" type="button"
+					onclick="window.location.href='formulario.jsp'" value="Ingresar">
+				<input class="btn btn-dark" type="button" data-bs-toggle="modal"
+					data-bs-target="#modalActualizar" value="Actualizar"> <input
+					class="btn btn-dark" type="button" data-bs-toggle="modal"
+					data-bs-target="#modalEliminar" value="Eliminar"> <input
+					class="btn btn-dark" type="button" data-bs-toggle="modal"
+					data-bs-target="#modalBuscar" value="Buscar"> <input
+					class="btn btn-dark" value="Listar" type="submit"> <input
+					class="btn btn-dark" type="button" data-bs-toggle="modal"
+					data-bs-target="#modalListarPorCarrera" value="Listar por carrera">
+			</div>
 		</div>
-	</div>
-
+	</form>
 	<div class="modal fade" id="modalActualizar" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -57,14 +59,14 @@
 						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Digite
 								la cedula del estudiante a actualizar:</label> <input type="text"
-								class="form-control" id="recipient-name">
+								class="form-control" id="cedulaActualizar">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-dark">Enviar</button>
+					<button type="button" class="btn btn-dark" id="enviar1">Enviar</button>
 				</div>
 			</div>
 		</div>
@@ -83,14 +85,14 @@
 						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Digite
 								la cedula del estudiante a eliminar:</label> <input type="text"
-								class="form-control" id="recipient-name">
+								class="form-control" id="cedulaEliminar">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-dark">Enviar</button>
+					<button type="button" class="btn btn-dark" id="enviar2">Enviar</button>
 				</div>
 			</div>
 		</div>
@@ -109,14 +111,15 @@
 						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Digite
 								la cedula del estudiante a buscar:</label> <input type="text"
-								class="form-control" id="recipient-name">
+								class="form-control" id="cedulaBuscar">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-dark">Enviar</button>
+					<button type="button" class="btn btn-dark" id="enviar3">Enviar</button>
+					<div class = "modal-body" 	id="resultadoBusqueda "></div>
 				</div>
 			</div>
 		</div>
@@ -139,36 +142,36 @@
 								<select class="form-select" id="floatingCarrera"
 									aria-label="Floating label select example">
 									<option selected>Seleccione la carrera</option>
-									<option value="1">Arquitectura</option>
-									<option value="2">Arte Dramático</option>
-									<option value="3">Artes Plásticas</option>
-									<option value="4">Diseño Industrial</option>
-									<option value="5">Diseño de Comunicación</option>
-									<option value="6">Formación Musical</option>
-									<option value="1">Arquitectura</option>
-									<option value="2">Arte Dramático</option>
-									<option value="3">Artes Plásticas</option>
-									<option value="4">Diseño Industrial</option>
-									<option value="5">Diseño de Comunicación</option>
-									<option value="6">Formación Musical</option>
-									<option value="7">Derecho</option>
-									<option value="8">Filosofía</option>
-									<option value="9">Licenciatura en Educación Infantil</option>
-									<option value="10">Psicología</option>
-									<option value="11">Licenciatura en Bilingüismo con
+									<option>Arquitectura</option>
+									<option >Arte Dramático</option>
+									<option >Artes Plásticas</option>
+									<option >Diseño Industrial</option>
+									<option >Diseño de Comunicación</option>
+									<option >Formación Musical</option>
+									<option >Arquitectura</option>
+									<option >Arte Dramático</option>
+									<option >Artes Plásticas</option>
+									<option>Diseño Industrial</option>
+									<option>Diseño de Comunicación</option>
+									<option >Formación Musical</option>
+									<option>Derecho</option>
+									<option >Filosofía</option>
+									<option>Licenciatura en Educación Infantil</option>
+									<option>Psicología</option>
+									<option>Licenciatura en Bilingüismo con
 										Énfasis en la Enseñanza del Inglés</option>
-									<option value="12">Intérprete Profesional de la Lengua
+									<option >Intérprete Profesional de la Lengua
 										de Señas Colombiana - Modalidad Virtual</option>
-									<option value="13">Administración de Empresas</option>
-									<option value="14">Bioingeniería</option>
-									<option value="15">Ingeniería Ambiental</option>
-									<option value="16">Ingeniería Electrónica</option>
-									<option value="17">Ingeniería Industrial</option>
-									<option value="18">Ingeniería de Sistemas</option>
-									<option value="19">Negocios Internacionales</option>
-									<option value="20">Matemáticas</option>
-									<option value="21">Estadística</option>
-									<option value="22">Contaduría Pública - Modalidad
+									<option >Administración de Empresas</option>
+									<option >Bioingeniería</option>
+									<option>Ingeniería Ambiental</option>
+									<option>Ingeniería Electrónica</option>
+									<option >Ingeniería Industrial</option>
+									<option>Ingeniería de Sistemas</option>
+									<option>Negocios Internacionales</option>
+									<option>Matemáticas</option>
+									<option>Estadística</option>
+									<option> Contaduría Pública - Modalidad
 										Virtual</option>
 									<option value="23">Finanzas - Modalidad Virtual</option>
 									<option value="24">Marketing y Transformación Digital
@@ -193,7 +196,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-dark">Enviar</button>
+					<button type="button" class="btn btn-dark" id="enviar4">Enviar</button>
 				</div>
 			</div>
 		</div>

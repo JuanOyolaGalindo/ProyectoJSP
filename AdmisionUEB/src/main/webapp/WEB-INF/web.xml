@@ -20,9 +20,49 @@
         <file-size-threshold>0</file-size-threshold>
     </multipart-config>
   </servlet>
-  <servlet-mapping>
+  <servlet-mapping> 
     <servlet-name>AspiranteServlet</servlet-name>
-    <url-pattern>/AspiranteServlet</url-pattern>
-    
+    <url-pattern>/AspiranteServlet</url-pattern>    
   </servlet-mapping>
+  
+   <servlet>
+   <display-name>ActualizarServlet</display-name>
+    <servlet-name>ActualizarServlet</servlet-name>
+    <servlet-class>co.edu.unbosque.servlet.ActualizarServlet</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActualizarServlet</servlet-name>
+    <url-pattern>/ActualizarServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <display-name>BuscarServlet</display-name>
+    <servlet-name>BuscarServlet</servlet-name>
+     <servlet-class>co.edu.unbosque.servlet.BuscarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuscarServlet</servlet-name>
+    <url-pattern>/BuscarServlet</url-pattern>
+  </servlet-mapping>
+   
+   <servlet>
+   <display-name>EliminarServlet</display-name>
+    <servlet-name>EliminarServlet</servlet-name>
+    <servlet-class>co.edu.unbosque.servlet.EliminarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EliminarServlet</servlet-name>
+    <url-pattern>/EliminarServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <display-name>ListarPorCarreraServlet</display-name>
+    <servlet-name>ListarPorCarreraServlet</servlet-name>
+     <servlet-class>co.edu.unbosque.servlet.ListarPorCarreraServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarPorCarreraServlet</servlet-name>
+    <url-pattern>/ListarPorCarreraServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

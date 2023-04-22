@@ -10,8 +10,8 @@ import co.edu.unbosque.model.persistence.FileHandler;
 
 public class AspiranteDAO {
 
-	ArrayList<AspiranteDTO> list;
-	StringBuilder sb;
+	private ArrayList<AspiranteDTO> list;
+	private StringBuilder sb;
 
 	public AspiranteDAO() {
 		list = new ArrayList<>();
@@ -35,11 +35,27 @@ public class AspiranteDAO {
 		}
 	}
 
+	public ArrayList<AspiranteDTO> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<AspiranteDTO> list) {
+		this.list = list;
+	}
+
+	public StringBuilder getSb() {
+		return sb;
+	}
+
+	public void setSb(StringBuilder sb) {
+		this.sb = sb;
+	}
+
 	public void agregarAspirante(String nombre, String fechanacimiento, int edad, String colegioegresado, String id,
 			String carrera, String estrato, String homologa, File foto) {
 		list.add(
 				new AspiranteDTO(nombre, fechanacimiento, edad, colegioegresado, id, carrera, estrato, homologa, foto));
-		writeFile();
+		//writeFile();
 	}
 
 	public String eliminarAspirante(String id) {
@@ -80,7 +96,7 @@ public class AspiranteDAO {
 					notif = "¡Aspirante modificado con éxito!";
 					writeFile();
 				} else {
-					notif = "¡Aspirante no enconctrado!";
+					notif = "¡Aspirante no encontrado!";
 				}
 			}
 		}
@@ -98,4 +114,20 @@ public class AspiranteDAO {
 		}
 		return sb.toString();
 	}
+	
+	public String listarAspirante(String id) {
+			int i =0;
+			boolean encontrado = false;
+			String aspirante = "No se ha encontrado el aspirante";
+			while(i<list.size()&& !encontrado){
+				if(id.equals(list.get(i).getId())){
+					encontrado = true;
+					aspirante = list.get(i).toString();
+				}else{
+					i++;
+				}
+			}
+			return aspirante;
+	}
 }
+

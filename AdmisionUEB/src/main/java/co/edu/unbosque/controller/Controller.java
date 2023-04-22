@@ -21,6 +21,14 @@ public class Controller {
 		adao.agregarAspirante(nombre, fechanacimiento, edad, colegioegresado, id, carrera, estrato, homologa, foto);
 	}
 
+	public AspiranteDAO getAdao() {
+		return adao;
+	}
+
+	public void setAdao(AspiranteDAO adao) {
+		this.adao = adao;
+	}
+
 	public String solicitarEliminar(String id) {
 		return adao.eliminarAspirante(id);
 	}
