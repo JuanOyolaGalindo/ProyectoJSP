@@ -14,9 +14,8 @@
 	crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
 <title>Registro</title>
-</head>
-
 <body>
+	<script src="js/style.js"></script>
 	<div class="p-3 mb-2 bg-black text-white">
 		<p class="fs-2">
 			<img
@@ -26,25 +25,25 @@
 			Universidad El Bosque - Registro de postulantes
 		</p>
 	</div>
-	<form class="row g-3" method="GET"
-		action="http://localhost:8080/Juan_Oyola_taller_jsp/almacen">
+	<form class="row g-3" method="POST" enctype="multipart/form-data"
+		action="http://localhost:8080/AdmisionUEB/AspiranteServlet">
 		<div class="col-12">
 			<div class="form-floating mb-3">
 				<input type="text" class="form-control" id="inputNombre"
-					placeholder="NombreCompleto"> <label for="inputNombre">Nombre
-					completo</label>
+					placeholder="NombreCompleto" name="pnombre"> <label
+					for="inputNombre">Nombre completo</label>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-floating mb-3">
-				<input type="date" class="form-control" id="floatingEstrato">
+				<input type="date" class="form-control" id="floatingEstrato" name="pfnacimiento">
 				<label for="inputEstrato">Fecha de nacimiento</label>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-floating">
 				<select class="form-select" id="floatingEstrato"
-					aria-label="Floating label select example">
+					aria-label="Floating label select example" name="pestrato">
 					<option selected>Seleccione su estrato</option>
 					<option value="1">Uno</option>
 					<option value="2">Dos</option>
@@ -58,7 +57,7 @@
 		<div class="row g-3">
 			<div class="form-floating">
 				<select class="form-select" id="floatingCarrera"
-					aria-label="Floating label select example">
+					aria-label="Floating label select example" name="pcarrera">
 					<option selected>Seleccione la carrera</option>
 					<option value="1">Arquitectura</option>
 					<option value="2">Arte Dramático</option>
@@ -91,16 +90,19 @@
 					<option value="21">Estadística</option>
 					<option value="22">Contaduría Pública - Modalidad Virtual</option>
 					<option value="23">Finanzas - Modalidad Virtual</option>
-					<option value="24">Marketing y Transformación Digital - Modalidad Virtual</option>
+					<option value="24">Marketing y Transformación Digital -
+						Modalidad Virtual</option>
 					<option value="25">Economía - Modalidad Virtual</option>
-					<option value="26">Administración de Negocios Sostenibles - Modalidad Virtual</option>
-					<option value="27">Pregrado de Administración en Producción y Logística Internacional</option>
+					<option value="26">Administración de Negocios Sostenibles
+						- Modalidad Virtual</option>
+					<option value="27">Pregrado de Administración en
+						Producción y Logística Internacional</option>
 					<option value="28">Biología</option>
 					<option value="29">Enfermería</option>
 					<option value="30">Instrumentación Quirúrgica</option>
 					<option value="31">Medicina</option>
 					<option value="32">Odontología</option>
-					<option value="33">Optometría	</option>
+					<option value="33">Optometría</option>
 					<option value="34">Química Farmacéutica</option>
 				</select> <label for="floatingCarrera">Carrera</label>
 			</div>
@@ -108,14 +110,14 @@
 		<div class="col-md-6">
 			<div class="form-floating mb-3">
 				<input type="text" class="form-control" id="inputID"
-					placeholder="NumeroIdentificación"> <label
+					placeholder="NumeroIdentificación" name="pid"> <label
 					for="inputNombre">Número de identificación </label>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-floating">
 				<select class="form-select" id="floatingEstrato"
-					aria-label="Floating label select example">
+					aria-label="Floating label select example" name="phomologa">
 					<option selected>¿El estudiante es homologado?</option>
 					<option value="1">Si</option>
 					<option value="2">No</option>
@@ -126,12 +128,16 @@
 			<div class="mb-3">
 				<label for="formFile" class="form-label">Seleccione la foto
 					de identificación </label> <input class="form-control" type="file"
-					id="formFile" accept="image/*">
+					name="pfoto" id="formFile" accept="image/gif, image/png, image/jpeg">
 			</div>
 		</div>
 		<div class="col-12">
-			<button type="submit" class="btn btn-dark">Guardar</button>
+			<button type="submit" class="btn btn-dark" >Guardar</button>
 		</div>
 	</form>
+	<form action="">
+	<input type="file" id="file" accept="image/*" onchange="mostrar()"/>
+	</form>
+	<img id="img"/>
 </body>
 </html>
